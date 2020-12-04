@@ -39,7 +39,7 @@ class ListeSalles extends Component {
 
                         <Col md={12}>
                             <Button bsStyle="info" pullRight fill type="submit" href="#add">
-                                Ajouter salle
+                                Ajouter salle +
                             </Button>
                             <Card
                                 plain
@@ -81,6 +81,7 @@ class ListeSalles extends Component {
                         </Col>
                     </Row>
                     <div id="add">
+                        <p>a</p>
                     <Ajoutsalle></Ajoutsalle>
                     </div>
                 </Grid>
