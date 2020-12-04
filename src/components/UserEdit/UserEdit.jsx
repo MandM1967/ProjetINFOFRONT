@@ -92,11 +92,12 @@ class UserEdit extends Component {
                                         />
 
                                         <Row>
-
+<p>boka2</p>
                                         </Row>
                                         <Button bsStyle="info" pullRight fill type="submit" href={"/admin/tableDesUsers"}>
                                             Enregistrer
                                         </Button>
+
                                         <div className="clearfix" />
                                     </form>
                                 }
