@@ -8,6 +8,7 @@ import Delete from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import CloudUpload from "@material-ui/icons/CloudUpload";
 import SallesServices from "../Services/SallesServices";
+import Ajoutsalle from "../components/Ajoutsalle/Ajoutsalle";
 
 class ListeSalles extends Component {
     constructor(props) {
@@ -37,6 +38,9 @@ class ListeSalles extends Component {
                     <Row>
 
                         <Col md={12}>
+                            <Button bsStyle="info" pullRight fill type="submit" href="#add">
+                                Ajouter salle
+                            </Button>
                             <Card
                                 plain
                                 title="Liste des salles"
@@ -76,9 +80,9 @@ class ListeSalles extends Component {
                             />
                         </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit" href={"/Ajoutsalle"}>
-                        Ajouter salle
-                    </Button>
+                    <div id="add">
+                    <Ajoutsalle></Ajoutsalle>
+                    </div>
                 </Grid>
             </div>
         );

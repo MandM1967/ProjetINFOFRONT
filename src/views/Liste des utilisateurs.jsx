@@ -6,6 +6,7 @@ import { thArray, tdArray } from "variables/Variables.jsx";
 import Button from "../components/CustomButton/CustomButton";
 import IconButton from "@material-ui/core/IconButton";
 import Delete from "@material-ui/icons/Delete";
+import UserEdit from "../components/UserEdit/UserEdit";
 
 class ListeUsers extends Component {
     render() {
@@ -15,6 +16,9 @@ class ListeUsers extends Component {
                     <Row>
 
                         <Col md={12}>
+                            <Button bsStyle="info" pullRight fill type="submit" href="#edit">
+                                Ajouter utilisateur
+                            </Button>
                             <Card
                                 plain
                                 title="Liste des utilisateurs"
@@ -52,9 +56,9 @@ class ListeUsers extends Component {
                             />
                         </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit" href={"/EditUser"}>
-                        Ajouter utilisateur
-                    </Button>
+                    <div id="edit">
+                        <UserEdit></UserEdit>
+                    </div>
                 </Grid>
             </div>
         );

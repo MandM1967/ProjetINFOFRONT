@@ -45,19 +45,14 @@ class Ajoutsalle extends Component {
                                 content={
                                     <form>
                                         <FormInputs
-                                            ncols={["col-md-6"]}
+                                            ncols={["col-md-6","col-md-6"]}
                                             properties={[
                                                 {
                                                     label: "Numéro de la salle",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Numéro de la salle",
-                                                }
-                                            ]}
-                                        />
-                                        <FormInputs
-                                            ncols={["col-md-6"]}
-                                            properties={[
+                                                },
                                                 {label: "Emplacement de la salle",
                                                     type: "text",
                                                     bsClass: "form-control",
@@ -66,19 +61,14 @@ class Ajoutsalle extends Component {
                                             ]}
                                         />
                                         <FormInputs
-                                            ncols={["col-md-6"]}
+                                            ncols={["col-md-6","col-md-6"]}
                                             properties={[
                                                 {
                                                     label: "Capacité de la salle",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Capacité de la salle",
-                                                }
-                                            ]}
-                                        />
-                                        <FormInputs
-                                            ncols={["col-md-6"]}
-                                            properties={[
+                                                },
                                                 {
                                                     label: "Type de la salle",
                                                     type: "text",
@@ -87,7 +77,6 @@ class Ajoutsalle extends Component {
                                                 }
                                             ]}
                                         />
-
 
                                         <Row>
 

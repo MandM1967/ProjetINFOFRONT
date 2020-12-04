@@ -44,7 +44,7 @@ class UserEdit extends Component {
                                 content={
                                     <form>
                                         <FormInputs
-                                            ncols={["col-md-4", "col-md-3", "col-md-5"]}
+                                            ncols={["col-md-4", "col-md-4", "col-md-4"]}
                                             properties={[
                                                 {
                                                     label: "Département",
@@ -68,7 +68,7 @@ class UserEdit extends Component {
                                             ]}
                                         />
                                         <FormInputs
-                                            ncols={["col-md-6", "col-md-6"]}
+                                            ncols={["col-md-4", "col-md-4", "col-md-4"]}
                                             properties={[
                                                 {
                                                     label: "Prénom",
@@ -81,12 +81,7 @@ class UserEdit extends Component {
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Nom",
-                                                }
-                                            ]}
-                                        />
-                                        <FormInputs
-                                            ncols={["col-md-6"]}
-                                            properties={[
+                                                },
                                                 {
                                                     label: "Numéro de téléphone",
                                                     type: "text",
