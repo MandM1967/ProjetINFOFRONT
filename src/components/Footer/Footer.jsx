@@ -25,11 +25,11 @@ class Footer extends Component {
         <Grid fluid>
           <p className="copyright pull-right">
             &copy; {new Date().getFullYear()}{" "}
-            <a href={"https://www.um6p.ma"}>
-                 'CI 1ère année
+            <a href>
+              Najlaa et othmane
 
             </a>
-            , made with ❤ for UM6P
+            , made with love for UM6P
           </p>
         </Grid>
       </footer>

@@ -19,6 +19,7 @@ class ListeSalles extends Component {
 
         }
         this.editSalle=this.editSalle.bind(this);
+        this.deleteSalle=this.deleteSalle.bind(this);
     }
     componentDidMount() {
         SallesServices.getSalles().then((res) => {
@@ -28,8 +29,11 @@ class ListeSalles extends Component {
     }
     editSalle(id){
         this.props.history.push(`/Editsalle/${id}`);
-
-
+    }
+    deleteSalle(id){
+        SallesServices.deleteSalle(id).then(res =>{
+            window.location.reload();
+        });
     }
     render() {
         return (
@@ -68,7 +72,7 @@ class ListeSalles extends Component {
                                                                 onClick={()=> this.editSalle(salle.id)}>
                                                     <CloudUpload/>
                                                 </IconButton> <IconButton aria-label="Supprimer" color={"primary"}
-                                                                          size={"medium"}>
+                                                                          size={"medium"} onClick={()=> this.deleteSalle(salle.id)}>
                                                     <Delete/>
                                                 </IconButton></td>
                                             </tr>
@@ -76,12 +80,11 @@ class ListeSalles extends Component {
                                         }
                                         </tbody>
                                     </Table>
-                                }hgfhgf
+                                }
                             />
                         </Col>
                     </Row>
                     <div id="add">
-                        <p>a</p>
                     <Ajoutsalle></Ajoutsalle>
                     </div>
                 </Grid>

@@ -148,11 +148,12 @@ class Editsalle extends Component {
                                         <Row>
 
                                         </Row>
-                                        <Button onClick={this.updateSalle} bsStyle="info" fill type="submit"  >
-                                            Enregistrer
-                                        </Button>
-                                        <Button bsStyle="danger " type="submit" pullRight fill >
+
+                                        <Button bsStyle="danger " type="submit" pullRight fill href={"/admin/tableDesSalles"} >
                                             Quitter
+                                        </Button>
+                                        <Button onClick={this.updateSalle} bsStyle="info" fill type="submit" pullRight style={{marginRight:"10px"}} >
+                                            Enregistrer
                                         </Button>
                                         <div className="clearfix" />
                                     </form>

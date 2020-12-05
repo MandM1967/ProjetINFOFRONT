@@ -81,8 +81,7 @@ class UserEdit extends Component {
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Nom",
-                                                },
-                                                {
+                                                },{
                                                     label: "Numéro de téléphone",
                                                     type: "text",
                                                     bsClass: "form-control",
@@ -90,9 +89,9 @@ class UserEdit extends Component {
                                                 }
                                             ]}
                                         />
-jhjhghjg
+
                                         <Row>
-<p>boka2</p>
+
                                         </Row>
                                         <Button bsStyle="info" pullRight fill type="submit" href={"/admin/tableDesUsers"}>
                                             Enregistrer

@@ -13,5 +13,11 @@ class SallesServices {
     updateSalle(salle, id){
         return axios.post( 'http://localhost:8090/GRDS/Salle/updateSalle/'+ id, salle)
     }
+    createSalle(s){
+        return axios.post("http://localhost:8090/GRDS/Salle/save/", s);
+    }
+    deleteSalle(id){
+        return axios.delete("http://localhost:8090/GRDS/Salle/deleteSalleById/"+id);
+    }
 }
 export default new SallesServices()
