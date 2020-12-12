@@ -31,8 +31,61 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
+import SallesServices from "../../Services/SallesServices";
+import UserServices from "../../Services/UserServices";
 
 class UserEdit extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            login: '',
+            nom: '',
+            prenom: '',
+            departement: '',
+            numtel: '',
+            Passwordresponsabledepartement: '',
+
+        }
+        this.saveUser=this.saveUser.bind(this);
+        this.changeDepartementHandler=this.changeDepartementHandler.bind(this);
+        this.changeEmailHandler=this.changeEmailHandler.bind(this);
+        this.changeLoginHandler=this.changeLoginHandler.bind(this);
+        this.changeNomHandler=this.changeNomHandler.bind(this);
+        this.changePrenomHandler=this.changePrenomHandler.bind(this);
+        this.changeNumtelHandler=this.changeNumtelHandler.bind(this);
+        this.changePasswordRDHandler=this.changePasswordRDHandler.bind(this);
+    }
+    saveUser = (u) => {
+        u.preventDefault();
+        let user={email: this.state.email, login: this.state.login, nom: this.state.nom, prenom: this.state.prenom, departement: this.state.departement, numtel: this.state.numtel,Passwordresponsabledepartement:this.state.Passwordresponsabledepartement};
+        console.log('user =>'+ JSON.stringify(user));
+        UserServices.createUser(user).then(res =>{
+            window.location.reload();
+        });
+    }
+    changeDepartementHandler = (event) => {
+        this.setState({departement:event.target.value});
+    }
+    changeEmailHandler = (event) => {
+        this.setState({email:event.target.value});
+    }
+    changeLoginHandler = (event) => {
+        this.setState({login:event.target.value});
+    }
+    changeNomHandler = (event) => {
+        this.setState({nom:event.target.value});
+    }
+    changePrenomHandler = (event) => {
+        this.setState({prenom:event.target.value});
+    }
+    changeNumtelHandler = (event) => {
+        this.setState({numtel:event.target.value});
+    }
+    changePasswordRDHandler = (event) => {
+        this.setState({Passwordresponsabledepartement:event.target.value});
+    }
+
     render() {
         return (
             <div className="content">
@@ -51,41 +104,61 @@ class UserEdit extends Component {
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Département",
-                                                    defaultValue: "UM6P",
+                                                    value: this.state.departement,
+                                                    defaultvalue:'UM6P',
+                                                    onChange: this.changeDepartementHandler,
                                                 },
                                                 {
                                                     label: "Nom d'utilisateur",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Nom d'utilisateur",
+                                                    value: this.state.login,
+                                                    onChange: this.changeLoginHandler,
                                                 },
                                                 {
                                                     label: "Adresse Email",
                                                     type: "email",
                                                     bsClass: "form-control",
-                                                    placeholder: "Adresse Email"
+                                                    placeholder: "Adresse Email",
+                                                    value: this.state.email,
+                                                    onChange: this.changeEmailHandler,
                                                 }
                                             ]}
                                         />
                                         <FormInputs
-                                            ncols={["col-md-4", "col-md-4", "col-md-4"]}
+                                            ncols={["col-md-4", "col-md-4", "col-md-4", "col-md-4"]}
                                             properties={[
                                                 {
                                                     label: "Prénom",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Prénom",
+                                                    value: this.state.prenom,
+                                                    onChange: this.changePrenomHandler,
                                                 },
                                                 {
                                                     label: "Nom",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Nom",
+                                                    value: this.state.nom,
+                                                    onChange: this.changeNomHandler,
                                                 },{
                                                     label: "Numéro de téléphone",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Numéro de téléphone",
+                                                    value: this.state.numtel,
+                                                    onChange: this.changeNumtelHandler,
+                                                },
+                                                {
+                                                    label: "Mot de passe",
+                                                    type: "password",
+                                                    bsClass: "form-control",
+                                                    placeholder: "Mote de passe",
+                                                    value: this.state.Passwordresponsabledepartement,
+                                                    onChange: this.changePasswordRDHandler,
                                                 }
                                             ]}
                                         />
@@ -93,7 +166,7 @@ class UserEdit extends Component {
                                         <Row>
 
                                         </Row>
-                                        <Button bsStyle="info" pullRight fill type="submit" href={"/admin/tableDesUsers"}>
+                                        <Button bsStyle="info" pullRight fill type="submit" onClick={this.saveUser}>
                                             Enregistrer
                                         </Button>
 

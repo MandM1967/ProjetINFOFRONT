@@ -23,8 +23,30 @@ import { thArray, tdArray } from "variables/Variables.jsx";
 import Button from "../components/CustomButton/CustomButton";
 import Delete from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
+import ReservationService from "../Services/ReservationService";
+import SallesServices from "../Services/SallesServices";
+
 
 class TableList extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      reservations: []
+
+    }
+  }
+  componentDidMount() {
+    ReservationService.getReservation().then((res) => {
+      this.setState({reservations: res.data});
+
+    });
+  }
+  deleteReservation(numres){
+    ReservationService.deleteReservation(numres).then(res =>{
+      window.location.reload();
+    });
+  }
   render() {
     return (
       <div className="content">
@@ -46,16 +68,19 @@ class TableList extends Component {
                         })}
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>RES-001</td>
-                        <td>31-08-1998</td>
-                        <td>1-A-05</td>
-                        <td>TERRY HENNRY</td>
-                        <td><IconButton aria-label="Mise a jour" color={"primary"} size={"medium"}>
-                          <Delete />
-                        </IconButton></td>
-                      </tr>
+                    <tbody>{this.state.reservations.map(
+                        reservation =>
+                            <tr key={reservation.id}>
+                              <td>{reservation.numreservation}</td>
+                              <td>{reservation.datereservation}</td>
+                              <td>{reservation.numsallereservee}</td>
+                              <td>{reservation.responsableDepartement}</td>
+                              <td><IconButton aria-label="Mise a jour" color={"primary"} size={"medium"} onClick={()=> this.deleteReservation(reservation.numreservation)}>
+                                <Delete/>
+                              </IconButton></td>
+                            </tr>
+                            )
+                            }
                     </tbody>
                   </Table>
                 }

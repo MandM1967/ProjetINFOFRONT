@@ -34,6 +34,14 @@ import { TextField, InputLabel, Select, MenuItem } from '@material-ui/core';
 import avatar from "assets/img/faces/face-3.jpg";
 
 class Réserver extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            numsallereservee: '',
+            datereservation: '',
+            typesalle: '',
+        }
+    }
     render() {
         return (
             <div className="content">
@@ -51,6 +59,8 @@ class Réserver extends Component {
                                                 label="Date de réservation"
                                                 type="datetime-local"
                                                 defaultValue="datetime-local"
+                                                value={ this.state.datereservation}
+                                                //onChange={}
 
                                                 InputLabelProps={{
                                                     shrink: true,

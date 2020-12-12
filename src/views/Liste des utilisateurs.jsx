@@ -7,8 +7,32 @@ import Button from "../components/CustomButton/CustomButton";
 import IconButton from "@material-ui/core/IconButton";
 import Delete from "@material-ui/icons/Delete";
 import UserEdit from "../components/UserEdit/UserEdit";
+import CloudUpload from "@material-ui/icons/CloudUpload";
+import UserServices from "../Services/UserServices";
+import SallesServices from "../Services/SallesServices";
 
 class ListeUsers extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            user: []
+
+        }
+        this.deleteUser=this.deleteUser.bind(this);
+    }
+    componentDidMount() {
+        UserServices.getUser().then((res) => {
+            this.setState({user: res.data});
+
+        });
+    }
+    deleteUser(login){
+        UserServices.deleteUser(login).then(res =>{
+            window.location.reload();
+        });
+    }
+
     render() {
         return (
             <div className="content">
@@ -17,7 +41,7 @@ class ListeUsers extends Component {
 
                         <Col md={12}>
                             <Button bsStyle="info" pullRight fill type="submit" href="#edit">
-                                Ajouter utilisateur
+                                Ajouter utilisateur +
                             </Button>
                             <Card
                                 plain
@@ -38,17 +62,22 @@ class ListeUsers extends Component {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><IconButton aria-label="Mise a jour" color={"primary"} size={"medium"}>
-                                                <Delete />
-                                            </IconButton></td>
-                                        </tr>
+                                        { this.state.user.map(
+                                            users =>
+                                                <tr key ={users.id}>
+                                                    <td>{users.departement}</td>
+                                                    <td>{users.login}</td>
+                                                    <td>{users.email}</td>
+                                                    <td>Mr {users.nom}</td>
+                                                    <td>{users.prenom}</td>
+                                                    <td>{users.numtel}</td>
+                                                    <td> <IconButton aria-label="Supprimer" color={"primary"}
+                                                                              size={"medium"} onClick={()=> this.deleteUser(users.login)}>
+                                                        <Delete/>
+                                                    </IconButton></td>
+                                                </tr>
+                                        )
+                                        }
                                         </tbody>
                                     </Table>
                                 }

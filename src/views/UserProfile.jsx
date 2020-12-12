@@ -47,7 +47,7 @@ class UserProfile extends Component {
                 content={
                   <form>
                     <FormInputs
-                      ncols={["col-md-4", "col-md-3", "col-md-5"]}
+                      ncols={["col-md-4", "col-md-4", "col-md-4"]}
                       properties={[
                         {
                           label: "Département",
@@ -71,7 +71,7 @@ class UserProfile extends Component {
                       ]}
                     />
                     <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
+                      ncols={["col-md-4", "col-md-4", "col-md-4", "col-md-4"]}
                       properties={[
                         {
                           label: "Prénom",
@@ -84,20 +84,23 @@ class UserProfile extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Nom",
-                        }
+                        },
+                          {
+                              label: "Numéro de téléphone",
+                              type: "text",
+                              bsClass: "form-control",
+                              placeholder: "Numéro de téléphone",
+                          },
+                          {
+                              label: "Mot de passe",
+                              type: "password",
+                              bsClass: "form-control",
+                              placeholder: "Mot de passe",
+                          }
+
                       ]}
                     />
-                    <FormInputs
-                      ncols={["col-md-6"]}
-                      properties={[
-                        {
-                          label: "Numéro de téléphone",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Numéro de téléphone",
-                        }
-                      ]}
-                    />
+
 
                     <Row>
 
