@@ -33,27 +33,31 @@ import { TextField, InputLabel, Select, MenuItem } from '@material-ui/core';
 
 import avatar from "assets/img/faces/face-3.jpg";
 import SallesServices from "../Services/SallesServices";
+import ReservationService from "../Services/ReservationService";
 
 class Réserver extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numsallereservee: '',
             datereservation: '',
             typesalle: '',
         }
         this.changeDatereservationHandler=this.changeDatereservationHandler.bind(this);
+        this.changeTypesalleHandler=this.changeTypesalleHandler.bind(this);
     }
     saveReservation = (r) => {
         r.preventDefault();
         let reservation={datereservation: this.state.datereservation,typesalle:this.state.typesalle};
         console.log('reservation =>'+ JSON.stringify(reservation));
-        ReservationsServices.createReservation(reservation).then(res =>{
+        ReservationService.createReservation(reservation).then(res =>{
             window.location.reload();
         });
     }
     changeDatereservationHandler = (event) => {
         this.setState({datereservation:event.target.value});
+    }
+    changeTypesalleHandler = (event) => {
+        this.setState({typesalle:event.target.value});
     }
     render() {
         return (
@@ -66,26 +70,38 @@ class Réserver extends Component {
                                 content={
 
                                     <form >
-                                        <Col md={4}>
-                                            <TextField
-                                                id="datetime-local"
-                                                label="Date de réservation"
-                                                type="datetime-local"
-                                                defaultValue="datetime-local"
+                                        <FormInputs
+                                            ncols={["col-md-4", "col-md-4","col-md-4"]}
+                                            properties={[
+                                                {
+                                                    label: "Date debut",
+                                                    type: "text",
+                                                    bsClass: "form-control",
+                                                    placeholder: "yyyy-mm-ddThh:mm:ss",
+                                                },
+                                                {
+                                                    label: "Date fin",
+                                                    type: "text",
+                                                    bsClass: "form-control",
+                                                    placeholder: "yyyy-mm-ddThh:mm:ss",
+                                                },
+                                                {
+                                                    abel: "Date fin",
+                                                    type: "demo-controlled-open-select-label",
+                                                    bsClass: "demo-controlled-open-select-label",
+                                                    placeholder: "yyyy-mm-ddThh:mm:ss",
+                                                }
 
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                    value: this.state.datereservation,
-                                                    onchange:this.changeDatereservationHandler,
-                                                }}
-                                            />
-                                        </Col>
-                                        <Col md={4}>
+
+                                            ]}
+                                        />
+                                        <Col md={6}>
                                         <div>
                                             <InputLabel id="demo-controlled-open-select-label">Type de salle</InputLabel>
                                             <Select
                                                 labelId="demo-controlled-open-select-label"
                                                 id="demo-controlled-open-select"
+
                                             >
                                                 <MenuItem value={10}>Grand amphi</MenuItem>
                                                 <MenuItem value={20}>Amphi</MenuItem>
@@ -96,25 +112,13 @@ class Réserver extends Component {
                                                 <MenuItem value={70}>Labo-PE</MenuItem>
                                                 <MenuItem value={80}>FABLAB</MenuItem>
                                                 <MenuItem value={90}>Salle de conférence</MenuItem>
-                                            </Select>
-                                        </div>
-                                        </Col>
-                                        <Col md={2}>
-                                        <div>
-                                            <InputLabel id="demo-controlled-open-select-label">Salles disponibles</InputLabel>
-                                            <Select
-                                                labelId="demo-controlled-open-select-label"
-                                                id="demo-controlled-open-select"
-                                            >
-
 
                                             </Select>
                                         </div>
                                         </Col>
 
-
-                                        <Button bsStyle="info" pullRight fill type="submit">
-                                            Réserver
+                                        <Button bsStyle="info" pullRight fill type="submit"  onClick={this.saveReservation}>
+                                            Rechercher
                                         </Button>
                                     </form>
 
@@ -123,6 +127,7 @@ class Réserver extends Component {
                         </Col>
 
                     </Row>
+
                 </Grid>
             </div>
         );

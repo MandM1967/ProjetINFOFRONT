@@ -71,10 +71,10 @@ class TableList extends Component {
                     <tbody>{this.state.reservations.map(
                         reservation =>
                             <tr key={reservation.id}>
-                              <td>{reservation.numreservation}</td>
+                              <td>{reservation.id}</td>
                               <td>{reservation.datereservation}</td>
                               <td>{reservation.numsallereservee}</td>
-                              <td>{reservation.responsableDepartement}</td>
+                              <td> Mr {reservation.nomRD}</td>
                               <td><IconButton aria-label="Mise a jour" color={"primary"} size={"medium"} onClick={()=> this.deleteReservation(reservation.numreservation)}>
                                 <Delete/>
                               </IconButton></td>
