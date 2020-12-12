@@ -32,6 +32,7 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import { TextField, InputLabel, Select, MenuItem } from '@material-ui/core';
 
 import avatar from "assets/img/faces/face-3.jpg";
+import SallesServices from "../Services/SallesServices";
 
 class Réserver extends Component {
     constructor(props) {
@@ -41,6 +42,18 @@ class Réserver extends Component {
             datereservation: '',
             typesalle: '',
         }
+        this.changeDatereservationHandler=this.changeDatereservationHandler.bind(this);
+    }
+    saveReservation = (r) => {
+        r.preventDefault();
+        let reservation={datereservation: this.state.datereservation,typesalle:this.state.typesalle};
+        console.log('reservation =>'+ JSON.stringify(reservation));
+        ReservationsServices.createReservation(reservation).then(res =>{
+            window.location.reload();
+        });
+    }
+    changeDatereservationHandler = (event) => {
+        this.setState({datereservation:event.target.value});
     }
     render() {
         return (
@@ -59,11 +72,11 @@ class Réserver extends Component {
                                                 label="Date de réservation"
                                                 type="datetime-local"
                                                 defaultValue="datetime-local"
-                                                value={ this.state.datereservation}
-                                                //onChange={}
 
                                                 InputLabelProps={{
                                                     shrink: true,
+                                                    value: this.state.datereservation,
+                                                    onchange:this.changeDatereservationHandler,
                                                 }}
                                             />
                                         </Col>
